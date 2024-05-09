@@ -1,15 +1,10 @@
 import Header from "./components/Header";
 import ProductCard from "./components/ProductCard";
 import Container from "./Container";
+import { ShopProvider } from "./Context/ShopContext";
+import { ProductType } from "./types/types";
 
-type ProductType = {
-  title: string;
-  image: string;
-  description: string;
-  price: number;
-}[];
-
-const products: ProductType = [
+const products: ProductType[] = [
   {
     title: "Product 1",
     image: "https://picsum.photos/400/400?random=1",
@@ -36,19 +31,21 @@ const products: ProductType = [
 function App() {
   return (
     <>
-      <Header />
-      <Container>
-        {products.map((product) => {
-          return (
-            <ProductCard
-              title={product.title}
-              description={product.description}
-              image={product.image}
-              price={product.price}
-            />
-          );
-        })}
-      </Container>
+      <ShopProvider>
+        <Header />
+        <Container>
+          {products.map((product) => {
+            return (
+              <ProductCard
+                title={product.title}
+                description={product.description}
+                image={product.image}
+                price={product.price}
+              />
+            );
+          })}
+        </Container>
+      </ShopProvider>
     </>
   );
 }

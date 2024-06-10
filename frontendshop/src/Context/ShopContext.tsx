@@ -38,6 +38,7 @@ export const ShopProvider: React.FC<{ children: ReactNode }> = ({
 };
 
 // Custom hook to use the context
+// eslint-disable-next-line react-refresh/only-export-components
 export const useShopContext = (): ShopContextType => {
   const context = useContext(ShopContext);
   if (!context) {

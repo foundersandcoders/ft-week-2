@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { useShopContext } from '../Context/ShopContext';
 import ProductCard from './ProductCard';
 
@@ -21,6 +21,7 @@ const ProductList = () => {
       }
     };
     fetchObjects();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

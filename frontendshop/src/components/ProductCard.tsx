@@ -19,7 +19,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         <p>{description}</p>
         <div className="card-details">
           <small>Price: €{price}.00</small>
-          <button>Add to Cart</button>
+          <button className="base-button button">Add to Cart</button>
         </div>
       </div>
     </div>

@@ -5,7 +5,7 @@ type ShopState = {
   products: ProductType[] | null;
 };
 
-type ShopActionType = { type: "set_products_list"; value: ProductType[] };
+type ShopActionType = { type: "set_products_list"; payload: ProductType[] };
 
 const initialState: ShopState = {
   products: null,
@@ -14,7 +14,7 @@ const initialState: ShopState = {
 function shopContextReducer(state: ShopState, action: ShopActionType): ShopState {
   switch (action.type) {
     case "set_products_list":
-      return { ...state, products: action.value };
+      return { ...state, products: action.payload };
     default:
       throw new Error(`Unhandled action type`);
   }

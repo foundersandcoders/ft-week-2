@@ -1,6 +1,10 @@
+import { useShopContext } from "../Context/ShopContext";
+
 const ShopButton = () => {
+  const { state } = useShopContext();
   return (
     <button className="base-button">
+      <div className="padding">{state.cartCount}</div>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="5rem"

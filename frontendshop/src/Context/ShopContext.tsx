@@ -3,22 +3,19 @@ import { ProductType } from "../types/types";
 
 type ShopState = {
   products: ProductType[] | null;
+  cart: ProductType[] | null;
+  cartCount: number;
 };
 
-type ShopActionType = { type: "set_products_list"; payload: ProductType[] };
+type ShopActionType =
+  | { type: "set_products_list"; payload: ProductType[] }
+  | { type: "add_to_cart"; payload: ProductType };
 
 const initialState: ShopState = {
   products: null,
+  cart: null,
+  cartCount: 0,
 };
-
-function shopContextReducer(state: ShopState, action: ShopActionType): ShopState {
-  switch (action.type) {
-    case "set_products_list":
-      return { ...state, products: action.payload };
-    default:
-      throw new Error(`Unhandled action type`);
-  }
-}
 
 type ShopContextType = {
   state: ShopState;
@@ -46,3 +43,21 @@ export const useShopContext = (): ShopContextType => {
   }
   return context;
 };
+
+function shopContextReducer(
+  state: ShopState,
+  action: ShopActionType
+): ShopState {
+  switch (action.type) {
+    case "set_products_list":
+      return { ...state, products: action.payload };
+    case "add_to_cart": {
+      const updatedCart = state.cart
+        ? [...state.cart, action.payload]
+        : [action.payload];
+      return { ...state, cart: updatedCart, cartCount: state.cartCount + 1 };
+    }
+    default:
+      throw new Error(`Unhandled action type`);
+  }
+}
